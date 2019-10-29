@@ -1,0 +1,10 @@
+<nav class="navbar navbar-light bg-light">
+  <% if user_signed_in? %>
+    <span class="navbar-brand mb-0 h1"><%="Sing in with " + current_user.email%></span>
+    <span class="navbar-brand mb-0 h1"><%= link_to "Sing out", destroy_user_session_path, method: :delete, class: "nav-link" %></span>
+  <% else %>
+    <span class="navbar-brand mb-0 h1"><%= link_to "Sing in", new_user_session_path, class: "nav-link" %></span>
+  <% end %>
+</nav>
+
+

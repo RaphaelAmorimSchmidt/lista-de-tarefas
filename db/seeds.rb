@@ -82,3 +82,12 @@ tasks_attributes = [
 ]
 Task.create!(tasks_attributes)
 puts "#{Task.count} create"
+
+favorites_attributes = [
+  {
+    list_id: list_market.id,
+    user_id: user_first.id
+  }
+]
+Favorite.create!(favorites_attributes)
+puts "#{Favorite.count} create"

@@ -1,11 +1,14 @@
-<h1> hello :)</h1>
 
-<% User.all.each do |user| %>
-  <%user.lists.each do |list|%>
-    <p><%=list.name%>,  <%=list.visibility%></p>
-    <%list.tasks.each do |ola|%>
-      <p><%=ola.name%>,<%=ola.check%></p>
-    <% end %>
-  <% end %>
-  <p>USER</p>
+<% @list.each do |list|%>
+  <div class="card border-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header"><%=list.name%></div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title"><%=list.user.email%></h5>
+      <%list.tasks.each do |task|%>
+      <p class="card-text"><%=task.name%>,<%=task.check%>, <%=task.user.email%></p>
+      <% end %>
+      <p class="card-text"></p>
+    </div>
+  </div>
+
 <% end %>
