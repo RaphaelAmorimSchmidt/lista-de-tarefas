@@ -31,12 +31,12 @@ user_last = User.last
 lists_attributes = [
   {
     name: 'Market',
-    public: true,
+    visibility: true,
     user_id: user_first.id
   },
   {
     name: 'Bills',
-    public: false,
+    visibility: false,
     user_id: user_last.id
   }
 ]

@@ -1,1 +1,11 @@
 <h1> hello :)</h1>
+
+<% User.all.each do |user| %>
+  <%user.lists.each do |list|%>
+    <p><%=list.name%>,  <%=list.visibility%></p>
+    <%list.tasks.each do |ola|%>
+      <p><%=ola.name%>,<%=ola.check%></p>
+    <% end %>
+  <% end %>
+  <p>USER</p>
+<% end %>
