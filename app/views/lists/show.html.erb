@@ -1,0 +1,17 @@
+<div class="d-flex mb-3">
+  <div class="card border-secondary m-3" style="max-width: 18rem;">
+    <div class="card-header"><%= @list.name %></div>
+      <div class="card-body text-secondary">
+      <% @list.tasks.each do |task|%>
+          <div class="my-3">
+            <h5 class="card-title"><%=task.name%></h5>
+            <p class="card-text">Decription: <%=task.description%></p>
+          </div>
+      <% end %>
+      <p>fazer com que crie tasks</p>
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to "Back", root_path, class: "mx-3" %>
+<%= link_to "Delete list", list_path(@list), method: :delete, data: {confirm: "Are you sure?"} %>

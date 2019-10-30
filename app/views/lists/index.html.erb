@@ -1,14 +1,19 @@
+<div class="ml-3">
+  <% if user_signed_in? %>
+    <%= link_to "New List", new_list_path %>
+  <% end %>
+</div>
+<div class="d-flex mb-3">
+  <% @lists.each do |list|%>
+    <div class="card border-secondary m-3" style="max-width: 18rem;">
+      <div class="card-header"><%= link_to list.name, list_path(list) %></div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title"><%=list.user.email%></h5>
+        <%list.tasks.each do |task|%>
+        <p class="card-text"><%=task.name%>,<%=task.check%>, <%=task.user.email%></p>
+        <% end %>
 
-<% @list.each do |list|%>
-  <div class="card border-secondary mb-3" style="max-width: 18rem;">
-    <div class="card-header"><%=list.name%></div>
-    <div class="card-body text-secondary">
-      <h5 class="card-title"><%=list.user.email%></h5>
-      <%list.tasks.each do |task|%>
-      <p class="card-text"><%=task.name%>,<%=task.check%>, <%=task.user.email%></p>
-      <% end %>
-      <p class="card-text"></p>
+      </div>
     </div>
-  </div>
-
-<% end %>
+  <% end %>
+</div>

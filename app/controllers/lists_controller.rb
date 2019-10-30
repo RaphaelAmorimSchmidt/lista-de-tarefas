@@ -2,7 +2,11 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @list = List.all
+    if user_signed_in?
+      @lists = current_user.lists | (List.where('visibility = true') - current_user.lists)
+    else
+      @lists = List.where('visibility = true')
+    end
   end
 
   def show
@@ -14,8 +18,12 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.create(list_params)
-    redirect_to list(@list)
+    #binding.pry
+    @list = List.new(list_params)
+    @list.user = current_user
+    if @list.save
+      redirect_to list_path(@list)
+    end
   end
 
   def edit
@@ -29,7 +37,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to root
+    redirect_to root_path
   end
 
   private
@@ -39,6 +47,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :public)
+    params.require(:list).permit(:name)
   end
 end
